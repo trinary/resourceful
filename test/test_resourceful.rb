@@ -1,7 +1,13 @@
 require 'helper'
 
-class TestResourceful < Test::Unit::TestCase
-  def test_something_for_real
-    flunk "hey buddy, you should probably rename this file and start testing for real"
+class BasicTest < Test::Unit::TestCase
+
+  describe "normal .get" do
+
+    it "works" do
+
+    end
+
   end
+
 end
