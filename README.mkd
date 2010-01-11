@@ -1,0 +1,33 @@
+Resourceful
+===========
+
+Resourceful provides a convenient Ruby API for making HTTP requests.
+
+Features:
+
+ * GET, PUT, POST and DELETE HTTP requests
+ * HTTP Basic and Digest authentication
+ * HTTP Caching with pluggable backends
+ * Automatic parsing and content-type handling
+
+More Info
+=========
+
+ * Source: [Github](http://github.com/paul/resourceful/tree/master)
+ * Bug Tracking: [Github Issues](http://github.com/paul/resourceful/issues)
+
+Examples
+========
+
+See EXAMPLE.mkd
+
+Getting started
+---------------
+
+    gem install resourceful
+
+Copyright
+---------
+
+Copyright (c) 2009 Absolute Performance, Inc, Paul Sadauskas & Peter Williams.  Released under the MIT License.
+

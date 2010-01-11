@@ -1,0 +1,59 @@
+
+# New 1.0 API
+
+## Simplest example
+
+Resourceful will automatically parse XML and JSON
+
+    Resourceful.get("http://example.com/foo.json")
+    # => { :foo => "bar" }
+
+## Expanded example
+
+    conn = Resourceful::Connection.new("example.com")
+    res  = conn.resource("foo.xml")
+    resp = res.get
+    # => Resourceful::Response
+    #      @header => Resourceful::Header,
+    #      @body   => Resourceful::Body,
+    #      @status => Resourceful::ResponseStatus
+
+### Using the response object
+
+A response object offers lots of convience methods to make working with responses easier.
+
+#### Dealing with headers
+
+A `Resourceful::Header` is an `OrderedHash`, that can be accessed by case-insensitive header name, symbol underscored representation of the name, or a constant (which will be the fastest, and represents the canonical way to access it.
+
+    resp.header['Content-Type']
+    resp.header[:content_type']
+    resp.header[Resourceful::Header::ContentType]
+    # => "application/xml"
+
+#### Dealing with the body
+
+A `Resourceful::Body` provides the response body. The `#to_s` method provides the actual text of the body, while the `#parsed` method provides the results of the parser. Several parsers are available, and you can also register your own.
+
+    resp.body.to_s
+    # => "<foo>bar</foo>"
+    resp.body.parsed
+    # => #<Nokogiri::XML::Reader:0x00000002454980>
+
+#### Dealing with the status
+
+A `Resourceful::ResponseStatus` can provide both the HTTP Status Code and the Reason Phrase. Also implements `#===` so it can be used in conditions and case statements
+
+    resp.status.code
+    resp.status.to_i
+    # => 200
+    resp.status.phrase
+    resp.status.reason
+    resp.status.to_s
+    # => "Ok"
+    resp.status == 200
+    # => true
+    resp.status == "Ok"
+    # => true
+
+
