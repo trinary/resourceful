@@ -8,6 +8,15 @@ Resourceful will automatically parse XML and JSON
     Resourceful.get("http://example.com/foo.json")
     # => { :foo => "bar" }
 
+## Setup
+
+    Resourceful.setup do
+      include Resourceful::Logger
+      include Resourceful::Adapter::Patron
+      include Resourceful::JsonParser
+      # ...
+    end
+
 ## Expanded example
 
     conn = Resourceful::Connection.new("example.com")
