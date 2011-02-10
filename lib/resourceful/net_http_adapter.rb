@@ -31,7 +31,10 @@ module Resourceful
       https = ("https" == uri.scheme)
       conn = Net::HTTP.Proxy(*proxy_details).new(uri.host, uri.port || (https ? 443 : 80))
       conn.use_ssl = https
-      begin 
+      conn.read_timeout = 600
+      conn.open_timeout = 600
+
+      begin
         conn.start
         res = conn.request(req, body)
       ensure
@@ -43,7 +46,7 @@ module Resourceful
         res.body
       ]
     ensure
-      
+
     end
 
     private
